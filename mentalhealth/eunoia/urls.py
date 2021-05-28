@@ -23,15 +23,15 @@ urlpatterns = [
 
     # Reset Password
     path('password-reset/',
-    auth_views.PasswordResetView.as_view(template_name="common\password-reset.html", subject_template_name="common\password-reset-text.txt", email_template_name="common\password_reset_email.html", success_url="/password-reset/done/"),
+    auth_views.PasswordResetView.as_view(template_name="registration\password-reset.html", subject_template_name="registration\email\password-reset-text.txt", email_template_name="registration\email\password-reset-email.html", success_url="/password-reset/done/"),
     name="reset_password"),
     path('password-reset/done/',
-    auth_views.PasswordResetDoneView.as_view(template_name="common\password-reset-sent.html"),
+    auth_views.PasswordResetDoneView.as_view(template_name="registration\password-reset-sent.html"),
     name="password_reset_done"),
     path('password-reset-confirm/<uidb64>/<token>/',
-    auth_views.PasswordResetConfirmView.as_view(template_name="common\password-reset-confirm.html", success_url="/password-reset-complete/"),
+    auth_views.PasswordResetConfirmView.as_view(template_name="registration\password-reset-confirm.html", success_url="/password-reset-complete/"),
     name="passwordresetconfirm"),
     path('password-reset-complete/',
-    auth_views.PasswordResetDoneView.as_view(template_name="common\password-reset-complete.html"),
+    auth_views.PasswordResetDoneView.as_view(template_name="registration\password-reset-complete.html"),
     name="password_reset_complete"),
 ]
