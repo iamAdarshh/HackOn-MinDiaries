@@ -7,7 +7,8 @@ Color shades ->
 */
 
 body{
-    padding-top: 80px;
+    padding-top: 100px;
+    margin-top: 100px;
 }
 /* Navbar css */
 .navbar{
@@ -18,7 +19,6 @@ body{
     font-style: normal;
     font-weight:900 !important;
     color: #000000;
-    font-family: 'Poppins', sans-serif;
 }
 
 

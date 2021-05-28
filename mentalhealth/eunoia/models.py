@@ -20,7 +20,11 @@ class AssessmentTest(models.Model):
     title = models.CharField(max_length=255)
     totalQuestions = models.IntegerField()
     Questions = TextField()
+    totalOptions = models.IntegerField()
+    Options = TextField()
     added_date = models.DateField(auto_now_add=True)
 
     def __str__(self):
         return self.title
+
+        

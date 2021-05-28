@@ -4,7 +4,15 @@
 
     <div>
         <div class="container">
-            
+            {% for key, value in question.items %}
+                <b>{{key}}</b>
+                <p>{{value.des}}</p>
+                {% for option in value.options %}
+                    <input type="radio" value="{{option}}" name={{key}}>{{option}}
+                {% endfor %}
+                <br>
+                <br>
+            {% endfor %}
         </div>
     </div>
 

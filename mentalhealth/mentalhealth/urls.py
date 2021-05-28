@@ -20,4 +20,5 @@ urlpatterns = [
     path('', include('eunoia.urls')),
     path('admin/', admin.site.urls),
     path('ckeditor/', include('ckeditor_uploader.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),
 ]
