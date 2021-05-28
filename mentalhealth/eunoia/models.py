@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models.fields import TextField
 #from ckeditor.fields import RichTextField
 from ckeditor_uploader.fields import RichTextUploadingField
 
@@ -14,3 +15,12 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title + ' | ' + str(self.author)
+
+class AssessmentTest(models.Model):
+    title = models.CharField(max_length=255)
+    totalQuestions = models.IntegerField()
+    Questions = TextField()
+    added_date = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return self.title
