@@ -5,6 +5,7 @@
 
 <!-- Stylesheet -->
 <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+<title>MiDiaries | COVID-19</title>
 
 {% endblock head %}
 
@@ -92,7 +93,11 @@
                 {% endif %}
             {% endfor %}
         {% else %}
-            <h1>No Centers Available</h1>
+                {% if searched == '1' %}
+                    <h1>No Centers Available</h1>
+                {% else %}
+                    <h1>Search for Vaccine.</h1>
+                {% endif %}
         {% endif %}
         </div>
     </div>

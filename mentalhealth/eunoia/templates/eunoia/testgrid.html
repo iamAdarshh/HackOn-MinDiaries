@@ -6,13 +6,40 @@
 <!-- Stylesheet -->
 <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
 
+<title>MiDiaries | Test</title>
+
 {% endblock head %}
 
 
 {% block content %}
     <div>
         <div class="container">
-            
+            <form action="">
+                <div class="row mb-2">
+                    <div class="col-8">
+                        <h5>Anxiety Test</h5>
+                    </div>
+                    <div class="col-4">
+                        <input type="Submit" name="anxiety" class="btn btn-md submit-btn" value="Give Test" >
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-8">
+                        <h5>Depression Test</h5>
+                    </div>
+                    <div class="col-4">
+                        <input type="Submit" name="depression" class="btn btn-md submit-btn" value="Give Test" >
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-8">
+                        <h5>Trauma Test</h5>
+                    </div>
+                    <div class="col-4">
+                        <input type="Submit" name="trauma" class="btn btn-md submit-btn" value="Give Test" >
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 {% endblock content %}

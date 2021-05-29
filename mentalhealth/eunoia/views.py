@@ -5,7 +5,7 @@ from django.views.generic import ListView, DetailView
 
 from .data import anxeity_questions, getIndiaData, getGlobalCovidData
 
-from .forms import CreateUserForm
+from .forms import CreateUserForm, FeedbackForm
 
 from django.contrib.auth import authenticate, login
 
@@ -16,7 +16,20 @@ from cowin_api import CoWinAPI
 # Create your views here.
 
 def home(request):
-    return render(request, 'eunoia/home.html', {})
+    if request.method == 'POST':
+        form = FeedbackForm(request.POST)
+
+        # If form is valid then it saves it.
+        if form.is_valid():
+            form.save()
+
+    data = {}
+
+    form = FeedbackForm()
+
+    data['form'] = form
+
+    return render(request, 'eunoia/home.html', data)
 
 def register(request):
 
@@ -74,13 +87,10 @@ def test(request, name = None):
 def covidDashboard(request):
 
     cowin = CoWinAPI()
-#    Global = getGlobalCovidData()
-
-#    data = {
-#        'Global': Global
-#    }
 
     content = {}
+
+    content["searched"] = '0'
 
     if request.method == 'POST':
         option = request.POST['option']
@@ -99,7 +109,8 @@ def covidDashboard(request):
             data = cowin.get_availability_by_district(district_id=parameter, date=date, min_age_limt=age)
         
         content = {
-            "centers":data["centers"]
+            "centers":data["centers"],
+            "searched": '1',
         }
 
 

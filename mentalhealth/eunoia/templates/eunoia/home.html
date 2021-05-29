@@ -6,22 +6,105 @@
 <!-- Stylesheet -->
 <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
 
+<title>MinDiaries</title>
+
 {% endblock head %}
 
 {% block content %}
 
 <!-- Section 1 -->
 <div class="jumbotron">
-  <h1 class="display-4">Hello, world!</h1>
-  <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+  <h1 class="display-4">MinDiaries</h1>
+  <p class="lead">Welcome to MinDiaries, your number one source for mental health. We're dedicated to providing you the very best of information and suggestions, with an emphasis on self-assessment tests , blogs, covid tracking, helpline numbers .</p>
   <hr class="my-4">
-  <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+  <p>The main goal of this website is to make it’s users aware of mental health and it’s factors; to normalise having these issues; to educate everyone through blogs and much more.</p>
   <a class="btn btn-jumbotron btn-lg" href="#" role="button">Learn more</a>
 </div>
 <!-- Section 2: Features section-->
+<section class="section-features">
+  <div class="container">
+    <div class="row mb-2">
+      <div class="col-md-6">
+        <img src="{% static 'images/blog.svg' %}" alt="" width="500px">
+      </div>
+      <div class="col-md-6">
+        <h4>Blog</h4>
+        <p>In the blog section , blogs about mental health and covid-19 have been written to give the user an insight about the topics</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <h4>Self assessment test</h4>
+        <p>In this section, you can take self assessment tests to know more about your mental health.</p>
+      </div>
+      <div class="col-md-6">
+        <img src="{% static 'images/assessmenttest.svg' %}" alt="" width="500px">
+      </div>
+    </div>
+    <div class="row mb-2">
+      <div class="col-md-6">
+        <img src="{% static 'images/covid.svg' %}" alt="" width="500px">
+      </div>
+      <div class="col-md-6">
+        <h4>COVID-19</h4>
+        <p>In this section, you can check availibility of vaccine slots using Pincode or District Code.</p>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
 <!-- Section 3: Self Test assessment -->
 <!-- Section 4: Helpline numbers -->
 <!-- Section 5: Contact Us Form -->
+<section class="section4">
+  <h1 class="title"> Feedback Form</h1>
+  <div class="container">
+      {{ form.errors }}
+      <form action="" method="POST">
+          {% csrf_token %}
+          <div class="feedback-form row">
+              <div class="form-field col-lg-6">
+                  {{form.name}}
+                  <label for="name" class="label">Name</label>
+              </div>
+              <div class="form-field col-lg-6">
+                  {{form.email}}
+                  <label for="email" class="label">Email</label>
+              </div>
+              <div class="form-field col-lg-6">
+                  {{form.contact}}
+                  <label for="phoen" class="label">Contact Number</label>
+              </div>
+              <div class="form-field col-lg-6">
+                  {{form.subject}}
+                  <label for="message" class="label">Subject</label>
+              </div>
+              <div class="form-field col-lg-12">
+                  {{form.message}}
+                  <label for="message" class="label">Message</label>
+              </div>
+              <div class="form-field col-lg-6">
+                  <input class="submit-btn" type="submit" value="submit" name="">
+              </div>
+          </div>
+      </form>
+  </div>
+</section>
 
+<script>
+  //Query All input fields
+  var form_fields = document.getElementsByTagName('input')
+  form_fields[1].id = "name";
+  form_fields[2].id="email";
+  form_fields[3].id = "contact";
+  form_fields[4].id = "subject";
+  form_fields[5].id = "message";
+
+  form_fields[1].className = 'input-text'
+  form_fields[2].className = 'input-text'
+  form_fields[3].className = 'input-text'
+  form_fields[4].className = 'input-text'
+  form_fields[5].className = 'input-text'
+</script>
 
 {% endblock content %}

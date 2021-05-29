@@ -27,4 +27,13 @@ class AssessmentTest(models.Model):
     def __str__(self):
         return self.title
 
-        
+
+class Feedback(models.Model):
+    name = models.CharField(max_length=200)
+    email = models.EmailField(max_length=200)
+    contact = models.CharField(max_length=10)
+    subject = models.CharField(max_length=100)
+    message = models.CharField(max_length=1000)
+
+    def __str__(self):
+        return self.name
