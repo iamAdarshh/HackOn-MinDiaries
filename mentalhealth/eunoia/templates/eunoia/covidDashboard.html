@@ -1,0 +1,100 @@
+{% extends 'eunoia\template.html' %}
+{% load static %}
+
+{% block head %}
+
+<!-- Stylesheet -->
+<link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+
+{% endblock head %}
+
+
+{% block content %}
+    <div class="container">
+            <form action="" method="POST">
+                {% csrf_token %}
+                <div class="row" >
+                    <div class="col-6">
+                        <p>Select the Mode you want to Use: </p>
+                    </div>
+                    <div class="col-6">
+                        <select name="option" style="width: 200px;">
+                            <option value="pincode">Pincode</option>
+                            <option value="district">District</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row" >
+                    <div class="col-6">
+                        <p>Enter District or Pincode</p>
+                    </div>
+                    <div class="col-6">
+                        <input type="text" name="parameter" style="width: 200px;">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <label for="">Date</label>
+                    </div>
+                    <div class="col-6">
+                        <input type="date" value="" name="date" required placeholder="Enter Check Date" style="width: 200px;">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <p>Enter your age: </p>
+                    </div>
+                    <div class="col-6">
+                        <input type="text" value="" name="age" required placeholder="Enter your age" style="width: 200px;">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <input type="submit" value="Check" class="btn btn-lg submit-btn">
+                    </div>
+                </div>
+            </form>
+        <div>
+        {% if centers %}
+            {% for center in centers %}
+                <h4>Center Name: {{center.name}}</h4>
+                <div class="row">
+                    <div class="col-6">
+                        <p>Fee: {{center.fee_type}}</p>
+                        <p>From: {{center.from}}</p>
+                        <p>To: {{center.to}}</p>
+                    </div>
+                    <div class="col-4">
+                        <p>Address: {{center.address}}, {{center.pincode}}</p>
+                        <p>Block Name: {{center.block_name}}</p>
+                        <p></p>
+                    </div>
+                </div>
+                <div class="row" >
+                    <div class="col">
+                        {% for session in center.sessions %}
+                            <p>On {{session.date}}, </p>
+                            <p>Available Vaccine: {{session.vaccine}}</p>
+                            <p>Available Slots: {{session.slots}}</p>
+                        {% endfor %}
+                    </div>
+                    {% if center.vaccine_fees %}
+                        <div class="col">
+                            <h5>Fees: </h5>
+                            {% for vaccine in center.vaccine_fees %}
+                            <p>{{vaccine.vaccine}} -> {{vaccine.fee}}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+                {% if center.vaccine_fees %}
+                    <p>{{center.vaccine_fees}}</p>
+                {% endif %}
+            {% endfor %}
+        {% else %}
+            <h1>No Centers Available</h1>
+        {% endif %}
+        </div>
+    </div>
+
+{% endblock content %}

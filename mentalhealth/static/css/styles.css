@@ -8,7 +8,6 @@ Color shades ->
 
 body{
     padding-top: 100px;
-    margin-top: 100px;
 }
 /* Navbar css */
 .navbar{
@@ -34,4 +33,9 @@ body{
     background-color: #ffffff !important;
     color: #000000 !important;
     border: 2px solid #fc6c85 !important;
+}
+
+.submit-btn{
+    background-color: #52B2Bf !important;
+    color: white !important;
 }

@@ -1,7 +1,8 @@
 from django.urls import path
 from django.urls.resolvers import URLPattern
+from django.views.generic.base import View
 
-from .views import blogGrid, home, detailBlog, test, testgrid, register
+from .views import blogGrid, home, detailBlog, test, testgrid, register, covidDashboard
 
 from django.contrib.auth import views as auth_views
 
@@ -12,6 +13,7 @@ urlpatterns = [
     path('testgrid/', view=testgrid, name="testgrid"),
     path('test/', view=test, name='test'),
     path('register/', view = register, name = "register"),
+    path('coviddashboard', view = covidDashboard, name='covidDashboard'),
 
     # Change Password
     path('change-password/', 

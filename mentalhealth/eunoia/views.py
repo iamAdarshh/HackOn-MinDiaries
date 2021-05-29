@@ -3,11 +3,15 @@ from django.http import HttpResponse
 from .models import Post
 from django.views.generic import ListView, DetailView
 
-from .data import anxeity_questions
+from .data import anxeity_questions, getIndiaData, getGlobalCovidData
 
 from .forms import CreateUserForm
 
 from django.contrib.auth import authenticate, login
+
+from cowin_api import CoWinAPI
+
+
 
 # Create your views here.
 
@@ -66,3 +70,37 @@ def test(request, name = None):
         'question': anxeity_questions,
     }
     return render(request, 'eunoia/test.html', data)
+
+def covidDashboard(request):
+
+    cowin = CoWinAPI()
+#    Global = getGlobalCovidData()
+
+#    data = {
+#        'Global': Global
+#    }
+
+    content = {}
+
+    if request.method == 'POST':
+        option = request.POST['option']
+        date = request.POST["date"]
+        age = request.POST["age"]
+        parameter = request.POST['parameter']
+
+        date = date.split("-")
+        date = date[-1]+"-"+date[-2]+"-"+date[-3]
+
+        age = 18
+        print(parameter)
+        if option == "pincode":
+            data = cowin.get_availability_by_pincode(pin_code=parameter, date=date, min_age_limt=age)
+        else:
+            data = cowin.get_availability_by_district(district_id=parameter, date=date, min_age_limt=age)
+        
+        content = {
+            "centers":data["centers"]
+        }
+
+
+    return render(request, 'eunoia/covidDashboard.html', content)
