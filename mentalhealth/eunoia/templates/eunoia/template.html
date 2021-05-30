@@ -26,7 +26,7 @@
     <!-- Bootstarp Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-white">
         <div class="container">
-            <a class="navbar-brand" href="#">Eunoia</a>
+            <a class="navbar-brand" href="{% url 'home' %}">MinDiaries</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -50,9 +50,18 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">Help</a>
                 </li>
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'change_password' %}">{{user.username}}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
+                </li>    
+                {% else %}
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'login' %}">Log In</a>
                 </li>
+                {% endif %}
             </ul>
             </div>
         </div>

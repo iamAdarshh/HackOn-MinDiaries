@@ -74,6 +74,10 @@ def blogGrid(request):
     return render(request, 'eunoia/bloggrid.html', data)
 
 def testgrid(request):
+
+    if request.method == 'POST':
+        return redirect(test)
+
     return render(request, 'eunoia/testgrid.html', {})
 
 def test(request, name = None):

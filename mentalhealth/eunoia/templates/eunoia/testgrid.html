@@ -14,7 +14,8 @@
 {% block content %}
     <div>
         <div class="container">
-            <form action="">
+            <form action="" method="POST">
+            {% csrf_token %}
                 <div class="row mb-2">
                     <div class="col-8">
                         <h5>Anxiety Test</h5>
